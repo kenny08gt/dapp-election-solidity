@@ -17,8 +17,8 @@ contract Election {
 
     constructor() {
         // candidatesCount = 0;
-        addCandidate("Candidate 1");
-        addCandidate("Candidate 2");
+        addCandidate("Pizza");
+        addCandidate("Burguer");
     }
 
     function addCandidate(string memory _name) private {

@@ -23,7 +23,7 @@ App = {
   },
 
   initContract: function () {
-    $.getJSON("Election.json", function (election) {
+    $.getJSON("/Election.json", function (election) {
       // Instantiate a new truffle contract from the artifact
       App.contracts.Election = TruffleContract(election);
       // Connect provider to interact with contract
@@ -74,10 +74,12 @@ App = {
         App.account = account;
         console.log("Found an authorized account:", account);
         $("#connect").hide();
+        $("form").show();
         $("#accountAddress").html("Your Account: " + account);
         // this.getTotal();
         // this.getAllSongs();
       } else {
+        $("form").hide();
         console.log("No authorized account found");
       }
     } catch (error) {
