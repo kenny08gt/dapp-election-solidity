@@ -96,6 +96,7 @@ App = {
       })
       .then(function (candidatesCount) {
         var candidatesResults = $("#candidatesResults");
+        candidatesResults.html("");
         candidatesResults.empty();
 
         var candidatesSelect = $("#candidatesSelect");
@@ -170,7 +171,9 @@ App = {
         .watch(function (error, event) {
           console.log("event triggered", event);
           // Reload when a new vote is recorded
-          App.render();
+          setTimeout(function () {
+            App.render();
+          }, 5000);
         });
     });
   },
