@@ -13,6 +13,8 @@ contract Election {
 
     uint256 public candidatesCount;
 
+    event votedEvent(uint256 indexed _candidateId);
+
     constructor() {
         // candidatesCount = 0;
         addCandidate("Candidate 1");
@@ -25,12 +27,17 @@ contract Election {
     }
 
     function vote(uint256 _candidateId) public {
-        require(!voters[msg.sender]);
+        require(!voters[msg.sender], "alreayd voted");
 
-        require(_candidateId > 0 && _candidateId <= candidatesCount);
+        require(
+            _candidateId > 0 && _candidateId <= candidatesCount,
+            "not valid candidate id"
+        );
 
         voters[msg.sender] = true;
 
         candidates[_candidateId].voteCount++;
+
+        emit votedEvent(_candidateId);
     }
 }
